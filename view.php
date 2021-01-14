@@ -16,7 +16,7 @@ if(empty($id)) {
 <div class="container mt-5">
 <?php
 $getvideo = mysqli_query($conn, "SELECT * FROM videos WHERE id = " . $id);
-
+ if ($getvideo->num_rows > 0) {
 while ($row = mysqli_fetch_assoc($getvideo)) {
     $getcat = mysqli_query($conn, "SELECT * FROM video_categories WHERE id = " . $row['cat']);
     $catrow = mysqli_fetch_assoc($getcat);
@@ -35,4 +35,6 @@ while ($row = mysqli_fetch_assoc($getvideo)) {
         </div>
     </div>
 
-<?php } ?>
+<?php } } else {
+     echo "Няма такъв видео клип";
+} ?>
